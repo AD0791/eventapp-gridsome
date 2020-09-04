@@ -5,12 +5,12 @@
         <g-link to="/">Events</g-link>
       </v-toolbar-title>
       <v-text-field
+        prepend-inner-icon="mdi-magnify"
         color="green"
         v-model="searchText"
         placeholder="Search for an Event"
         style="max-width: 350px"
         class="ml-8"
-        prepend-inner-icon="mdi-magnify"
         outlined
         rounded
         dense

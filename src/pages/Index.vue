@@ -82,7 +82,7 @@ export default {
       });
     },
     formatDate(date) {
-      return moment(date).format("MMM Do YYY, h:mm a");
+      return moment(date).format("MMM Do Y, h:mm a");
     },
     getEvents(searchText) {
       return this.events.filter((edge) => {
