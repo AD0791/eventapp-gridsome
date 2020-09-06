@@ -1,9 +1,9 @@
 <template>
-  <Layout>
+<Layout>
     <h1>{{ $page.event.title }}</h1>
-    <img width="600" :src="`http://localhost:1337${$page.event.image}`" alt="not dyn" />
+    <img width="600" :src="`${process.env.PRODUCTION_URL}${$page.event.image}`" alt="not dyn" />
     <p>{{ $page.event.description }}</p>
-  </Layout>
+</Layout>
 </template>
 
 <page-query>
@@ -22,10 +22,10 @@ query($id: ID!){
 
 <script>
 export default {
-  metaInfo() {
-    return {
-      title: this.$page.event.title,
-    };
-  },
+    metaInfo() {
+        return {
+            title: this.$page.event.title,
+        };
+    },
 };
 </script>

@@ -6,8 +6,10 @@
 // To restart press CTRL + C in terminal and run `gridsome develop`
 
 //const nodeExternals = require("webpack-node-externals");
+//const config = ('./config.js');
 const axios = require("axios");
 module.exports = function (api) {
+
   api.chainWebpack((config, {
     isServer
   }) => {
@@ -21,10 +23,10 @@ module.exports = function (api) {
   });
 
   api.loadSource(async (actions) => {
+    // await axios.get("http://localhost:1337/events");
     const {
       data
-    } = await axios.get("http://localhost:1337/events");
-
+    } = await axios.get(`${process.env.PRODUCTION_URL}events`);
     // graphql layer
     const collection = actions.addCollection({
       typeName: "Event",
