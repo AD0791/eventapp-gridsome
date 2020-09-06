@@ -8,7 +8,9 @@
 
     <v-row class="justify-space-around">
         <v-card class="mt-5" width="280" v-for="edge in getEvents(searchText)" :key="edge.node.id">
-            <v-img class="white--text align-end" height="250px" :src="`${process.env.PRODUCTION_URL}${edge.node.thumbnail}`" />
+            <v-img class="white--text align-end" height="250px" :src="
+            `https://eventapp-strapi-api.herokuapp.com${edge.node.thumbnail}`
+          " />
             <v-card-title>{{ edge.node.title }}</v-card-title>
             <v-card-subtitle class="pb-0">
                 {{ formatDate(edge.node.date) }}
