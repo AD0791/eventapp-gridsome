@@ -9,12 +9,10 @@
     <v-row class="justify-space-around">
         <v-card class="mt-5" width="280" v-for="edge in getEvents(searchText)" :key="edge.node.id">
             <v-img class="white--text align-end" height="250px" :src="
-            `https://eventapp-strapi-api.herokuapp.com${edge.node.thumbnail}`
+            `${items.env}${edge.node.thumbnail}`
           " />
             <v-card-title>{{ edge.node.title }}</v-card-title>
-            <v-card-subtitle class="pb-0">
-                {{ formatDate(edge.node.date) }}
-            </v-card-subtitle>
+            <v-card-subtitle class="pb-0">{{ formatDate(edge.node.date) }}</v-card-subtitle>
 
             <v-card-actions>
                 <v-btn color="green" text @click="$router.push(`/events/${edge.node.id}`)">More Info</v-btn>
@@ -47,6 +45,7 @@ description
 
 <script>
 import moment from "moment";
+//const axios = require("axios");
 export default {
     metaInfo: {
         title: "Events App",
@@ -55,10 +54,12 @@ export default {
         return {
             tab: 0,
             events: [],
+            items: {},
         };
     },
     mounted() {
         this.events = this.$page.events.edges;
+        this.items.emv = process.env.GRIDSOME_PRODUCTION_URL;
     },
     watch: {
         tab(val) {

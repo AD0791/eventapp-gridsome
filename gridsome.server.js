@@ -8,8 +8,10 @@
 //const nodeExternals = require("webpack-node-externals");
 //const config = ('./config.js');
 const axios = require("axios");
-module.exports = function(api) {
-  api.chainWebpack((config, { isServer }) => {
+module.exports = function (api) {
+  api.chainWebpack((config, {
+    isServer
+  }) => {
     if (isServer) {
       config.externals([
         nodeExternals({
@@ -21,8 +23,10 @@ module.exports = function(api) {
 
   api.loadSource(async (actions) => {
     // await axios.get("http://localhost:1337/events");
-    const { data } = await axios.get(
-      `https://eventapp-strapi-api.herokuapp.com/events`
+    const {
+      data
+    } = await axios.get(
+      `${process.env.PRODUCTION_URL}/events`
     );
     // graphql layer
     const collection = actions.addCollection({
@@ -46,7 +50,9 @@ module.exports = function(api) {
     }
   });
 
-  api.createPages(({ createPage }) => {
+  api.createPages(({
+    createPage
+  }) => {
     createPage({
       path: "/events/create",
       component: "./src/templates/CreateForm.vue",
